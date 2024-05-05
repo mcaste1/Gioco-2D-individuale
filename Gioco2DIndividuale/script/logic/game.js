@@ -13,7 +13,7 @@ const DIRECTION_UP = 3;
 const DIRECTION_LEFT = 2;
 const DIRECTION_BOTTOM = 1;
 let vite = 3;
-let ghostCount = 4;
+let nFantasmi = 4;
 let ghostImageLocations = [
     { x: 0, y: 0 },
     { x: 176, y: 0 },
@@ -71,13 +71,7 @@ let randomTargetsForGhosts = [
 
 
 let nuovoPacman = () => {
-    pacman = new Pacman(
-        oneBlockSize,
-        oneBlockSize,
-        oneBlockSize,
-        oneBlockSize,
-        oneBlockSize / 5
-    );
+    pacman = new Pacman(oneBlockSize, oneBlockSize, oneBlockSize, oneBlockSize, oneBlockSize / 5);
 };
 
 let gameLoop = () => {
@@ -96,7 +90,8 @@ let collisioneFantasma = () => {
     vite--;
     restart();
     if (vite == 0) {
-        
+        alert("Hai perso");
+        location.reload();
     }
 };
 
@@ -113,13 +108,7 @@ let drawFoods = () => {
     for (let i = 0; i < mappa.length; i++) {
         for (let j = 0; j < mappa[0].length; j++) {
             if (mappa[i][j] == 2) {
-                creaRett(
-                    j * oneBlockSize + oneBlockSize / 3,
-                    i * oneBlockSize + oneBlockSize / 3,
-                    oneBlockSize / 3,
-                    oneBlockSize / 3,
-                    "#FF5733"
-                );
+                creaRett(j * oneBlockSize + oneBlockSize / 3, i * oneBlockSize + oneBlockSize / 3, oneBlockSize / 3, oneBlockSize / 3, "#FF5733");
             }
         }
     }
@@ -131,28 +120,14 @@ let drawRemainingLives = () => {
     canvasContext.fillText("Vite rimanenti: ", 220, oneBlockSize * (mappa.length + 1));
 
     for (let i = 0; i < vite; i++) {
-        canvasContext.drawImage(
-            pacmanFrames,
-            2 * oneBlockSize,
-            0,
-            oneBlockSize,
-            oneBlockSize,
-            350 + i * oneBlockSize,
-            oneBlockSize * mappa.length + 2,
-            oneBlockSize,
-            oneBlockSize
-        );
+        canvasContext.drawImage(pacmanFrames, 2 * oneBlockSize, 0, oneBlockSize, oneBlockSize, 350 + i * oneBlockSize, oneBlockSize * mappa.length + 2, oneBlockSize, oneBlockSize);
     }
 };
 
 let drawScore = () => {
     canvasContext.font = "20px Emulogic";
     canvasContext.fillStyle = "white";
-    canvasContext.fillText(
-        "Punteggio: " + score,
-        0,
-        oneBlockSize * (mappa.length + 1)
-    );
+    canvasContext.fillText("Punteggio: " + score, 0, oneBlockSize * (mappa.length + 1));
 };
 
 let draw = () => {
@@ -170,51 +145,21 @@ let drawMuri = () => {
     for (let i = 0; i < mappa.length; i++) {
         for (let j = 0; j < mappa[0].length; j++) {
             if (mappa[i][j] == 1) {
-                creaRett(
-                    j * oneBlockSize,
-                    i * oneBlockSize,
-                    oneBlockSize,
-                    oneBlockSize,
-                    "#342DCA"
-                );
+                creaRett(j * oneBlockSize, i * oneBlockSize, oneBlockSize, oneBlockSize, "#342DCA");
                 if (j > 0 && mappa[i][j - 1] == 1) {
-                    creaRett(
-                        j * oneBlockSize,
-                        i * oneBlockSize + wallOffset,
-                        wallSpaceWidth + wallOffset,
-                        wallSpaceWidth,
-                        wallInnerColor
-                    );
+                    creaRett(j * oneBlockSize, i * oneBlockSize + wallOffset, wallSpaceWidth + wallOffset, wallSpaceWidth, wallInnerColor);
                 }
 
                 if (j < mappa[0].length - 1 && mappa[i][j + 1] == 1) {
-                    creaRett(
-                        j * oneBlockSize + wallOffset,
-                        i * oneBlockSize + wallOffset,
-                        wallSpaceWidth + wallOffset,
-                        wallSpaceWidth,
-                        wallInnerColor
-                    );
+                    creaRett(j * oneBlockSize + wallOffset, i * oneBlockSize + wallOffset, wallSpaceWidth + wallOffset, wallSpaceWidth, wallInnerColor);
                 }
 
                 if (i < mappa.length - 1 && mappa[i + 1][j] == 1) {
-                    creaRett(
-                        j * oneBlockSize + wallOffset,
-                        i * oneBlockSize + wallOffset,
-                        wallSpaceWidth,
-                        wallSpaceWidth + wallOffset,
-                        wallInnerColor
-                    );
+                    creaRett(j * oneBlockSize + wallOffset, i * oneBlockSize + wallOffset, wallSpaceWidth, wallSpaceWidth + wallOffset, wallInnerColor);
                 }
 
                 if (i > 0 && mappa[i - 1][j] == 1) {
-                    creaRett(
-                        j * oneBlockSize + wallOffset,
-                        i * oneBlockSize,
-                        wallSpaceWidth,
-                        wallSpaceWidth + wallOffset,
-                        wallInnerColor
-                    );
+                    creaRett(j * oneBlockSize + wallOffset, i * oneBlockSize, wallSpaceWidth, wallSpaceWidth + wallOffset, wallInnerColor);
                 }
             }
         }
@@ -223,7 +168,7 @@ let drawMuri = () => {
 
 let nuoviFantasmi = () => {
     ghosts = [];
-    for (let i = 0; i < ghostCount * 2; i++) {
+    for (let i = 0; i < nFantasmi * 2; i++) {
         let newGhost = new Ghost(
             9 * oneBlockSize + (i % 2 == 0 ? 0 : 1) * oneBlockSize,
             10 * oneBlockSize + (i % 2 == 0 ? 0 : 1) * oneBlockSize,

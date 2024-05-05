@@ -21,10 +21,7 @@ class Ghost {
     isInRange() {
         let xDistance = Math.abs(pacman.getMappaX() - this.getMappaX());
         let yDistance = Math.abs(pacman.getMappaY() - this.getMappaY());
-        if (
-            Math.sqrt(xDistance * xDistance + yDistance * yDistance) <=
-            this.range
-        ) {
+        if (Math.sqrt(xDistance * xDistance + yDistance * yDistance) <= this.range) {
             return true;
         }
         return false;
@@ -156,7 +153,7 @@ class Ghost {
             }
         }
 
-        return 1; // direction
+        return 1;
     }
 
     addNeighbors(poped, mp) {
