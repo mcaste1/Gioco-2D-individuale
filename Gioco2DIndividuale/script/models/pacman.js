@@ -71,19 +71,10 @@ class Pacman {
     checkCollisions() {
         let isCollided = false;
         if (
-            mappa[parseInt(this.y / oneBlockSize)][
-                parseInt(this.x / oneBlockSize)
-            ] == 1 ||
-            mappa[parseInt(this.y / oneBlockSize + 0.9999)][
-                parseInt(this.x / oneBlockSize)
-            ] == 1 ||
-            mappa[parseInt(this.y / oneBlockSize)][
-                parseInt(this.x / oneBlockSize + 0.9999)
-            ] == 1 ||
-            mappa[parseInt(this.y / oneBlockSize + 0.9999)][
-                parseInt(this.x / oneBlockSize + 0.9999)
-            ] == 1
-        ) {
+            mappa[parseInt(this.y / oneBlockSize)][parseInt(this.x / oneBlockSize)] == 1 ||
+            mappa[parseInt(this.y / oneBlockSize + 0.9999)][parseInt(this.x / oneBlockSize)] == 1 ||
+            mappa[parseInt(this.y / oneBlockSize)][parseInt(this.x / oneBlockSize + 0.9999)] == 1 ||
+            mappa[parseInt(this.y / oneBlockSize + 0.9999)][parseInt(this.x / oneBlockSize + 0.9999)] == 1) {
             isCollided = true;
         }
         return isCollided;
@@ -92,10 +83,7 @@ class Pacman {
     controlloCollisioneFantasma(ghosts) {
         for (let i = 0; i < ghosts.length; i++) {
             let ghost = ghosts[i];
-            if (
-                ghost.getMappaX() == this.getMappaX() &&
-                ghost.getMappaY() == this.getMappaY()
-            ) {
+            if (ghost.getMappaX() == this.getMappaX() && ghost.getMappaY() == this.getMappaY()) {
                 return true;
             }
         }
@@ -137,32 +125,15 @@ class Pacman {
     }
 
     cambiaAnimazione() {
-        this.currentFrame =
-            this.currentFrame == this.frameCount ? 1 : this.currentFrame + 1;
+        this.currentFrame = this.currentFrame == this.frameCount ? 1 : this.currentFrame + 1;
     }
 
     draw() {
         canvasContext.save();
-        canvasContext.translate(
-            this.x + oneBlockSize / 2,
-            this.y + oneBlockSize / 2
-        );
+        canvasContext.translate(this.x + oneBlockSize / 2, this.y + oneBlockSize / 2);
         canvasContext.rotate((this.direction * 90 * Math.PI) / 180);
-        canvasContext.translate(
-            -this.x - oneBlockSize / 2,
-            -this.y - oneBlockSize / 2
-        );
-        canvasContext.drawImage(
-            pacmanFrames,
-            (this.currentFrame - 1) * oneBlockSize,
-            0,
-            oneBlockSize,
-            oneBlockSize,
-            this.x,
-            this.y,
-            this.width,
-            this.height
-        );
+        canvasContext.translate(-this.x - oneBlockSize / 2, -this.y - oneBlockSize / 2);
+        canvasContext.drawImage(pacmanFrames, (this.currentFrame - 1) * oneBlockSize, 0, oneBlockSize, oneBlockSize, this.x, this.y,this.width,this.height);
         canvasContext.restore();
     }
 }

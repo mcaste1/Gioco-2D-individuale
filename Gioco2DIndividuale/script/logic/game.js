@@ -117,11 +117,7 @@ let drawFoods = () => {
 let drawRemainingLives = () => {
     canvasContext.font = "20px Emulogic";
     canvasContext.fillStyle = "white";
-    canvasContext.fillText("Vite rimanenti: ", 220, oneBlockSize * (mappa.length + 1));
-
-    for (let i = 0; i < vite; i++) {
-        canvasContext.drawImage(pacmanFrames, 2 * oneBlockSize, 0, oneBlockSize, oneBlockSize, 350 + i * oneBlockSize, oneBlockSize * mappa.length + 2, oneBlockSize, oneBlockSize);
-    }
+    canvasContext.fillText("Vite rimanenti: " + vite, 220, oneBlockSize * (mappa.length + 1));
 };
 
 let drawScore = () => {
@@ -169,18 +165,8 @@ let drawMuri = () => {
 let nuoviFantasmi = () => {
     ghosts = [];
     for (let i = 0; i < nFantasmi * 2; i++) {
-        let newGhost = new Ghost(
-            9 * oneBlockSize + (i % 2 == 0 ? 0 : 1) * oneBlockSize,
-            10 * oneBlockSize + (i % 2 == 0 ? 0 : 1) * oneBlockSize,
-            oneBlockSize,
-            oneBlockSize,
-            pacman.speed / 2,
-            ghostImageLocations[i % 4].x,
-            ghostImageLocations[i % 4].y,
-            124,
-            116,
-            6 + i
-        );
+        let newGhost = new Ghost(9 * oneBlockSize + (i % 2 == 0 ? 0 : 1) * oneBlockSize, 10 * oneBlockSize + (i % 2 == 0 ? 0 : 1) * oneBlockSize,
+            oneBlockSize, oneBlockSize,pacman.speed / 2,ghostImageLocations[i % 4].x, ghostImageLocations[i % 4].y,124,116,6 + i);
         ghosts.push(newGhost);
     }
 };

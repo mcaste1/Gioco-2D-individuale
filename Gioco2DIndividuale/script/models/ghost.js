@@ -83,20 +83,10 @@ class Ghost {
 
     controlloCollisioni() {
         let isCollided = false;
-        if (
-            mappa[parseInt(this.y / oneBlockSize)][
-                parseInt(this.x / oneBlockSize)
-            ] == 1 ||
-            mappa[parseInt(this.y / oneBlockSize + 0.9999)][
-                parseInt(this.x / oneBlockSize)
-            ] == 1 ||
-            mappa[parseInt(this.y / oneBlockSize)][
-                parseInt(this.x / oneBlockSize + 0.9999)
-            ] == 1 ||
-            mappa[parseInt(this.y / oneBlockSize + 0.9999)][
-                parseInt(this.x / oneBlockSize + 0.9999)
-            ] == 1
-        ) {
+        if (mappa[parseInt(this.y / oneBlockSize)][parseInt(this.x / oneBlockSize)] == 1 ||
+            mappa[parseInt(this.y / oneBlockSize + 0.9999)][parseInt(this.x / oneBlockSize)] == 1 ||
+            mappa[parseInt(this.y / oneBlockSize)][parseInt(this.x / oneBlockSize + 0.9999)] == 1 ||
+            mappa[parseInt(this.y / oneBlockSize + 0.9999)][parseInt(this.x / oneBlockSize + 0.9999)] == 1) {
             isCollided = true;
         }
         return isCollided;
@@ -161,38 +151,22 @@ class Ghost {
         let numOfRows = mp.length;
         let numOfColumns = mp[0].length;
 
-        if (
-            poped.x - 1 >= 0 &&
-            poped.x - 1 < numOfRows &&
-            mp[poped.y][poped.x - 1] != 1
-        ) {
+        if (poped.x - 1 >= 0 && poped.x - 1 < numOfRows && mp[poped.y][poped.x - 1] != 1) {
             let tempMoves = poped.moves.slice();
             tempMoves.push(DIRECTION_LEFT);
             queue.push({ x: poped.x - 1, y: poped.y, moves: tempMoves });
         }
-        if (
-            poped.x + 1 >= 0 &&
-            poped.x + 1 < numOfRows &&
-            mp[poped.y][poped.x + 1] != 1
-        ) {
+        if (poped.x + 1 >= 0 && poped.x + 1 < numOfRows && mp[poped.y][poped.x + 1] != 1) {
             let tempMoves = poped.moves.slice();
             tempMoves.push(DIRECTION_RIGHT);
             queue.push({ x: poped.x + 1, y: poped.y, moves: tempMoves });
         }
-        if (
-            poped.y - 1 >= 0 &&
-            poped.y - 1 < numOfColumns &&
-            mp[poped.y - 1][poped.x] != 1
-        ) {
+        if (poped.y - 1 >= 0 && poped.y - 1 < numOfColumns && mp[poped.y - 1][poped.x] != 1) {
             let tempMoves = poped.moves.slice();
             tempMoves.push(DIRECTION_UP);
             queue.push({ x: poped.x, y: poped.y - 1, moves: tempMoves });
         }
-        if (
-            poped.y + 1 >= 0 &&
-            poped.y + 1 < numOfColumns &&
-            mp[poped.y + 1][poped.x] != 1
-        ) {
+        if (poped.y + 1 >= 0 && poped.y + 1 < numOfColumns && mp[poped.y + 1][poped.x] != 1) {
             let tempMoves = poped.moves.slice();
             tempMoves.push(DIRECTION_BOTTOM);
             queue.push({ x: poped.x, y: poped.y + 1, moves: tempMoves });
@@ -227,20 +201,10 @@ class Ghost {
 
     draw() {
         canvasContext.save();
-        canvasContext.drawImage(
-            ghostFrames,
-            this.imageX,
-            this.imageY,
-            this.imageWidth,
-            this.imageHeight,
-            this.x,
-            this.y,
-            this.width,
-            this.height
-        );
+        canvasContext.drawImage(ghostFrames, this.imageX,this.imageY, this.imageWidth, this.imageHeight,this.x,this.y,this.width, this.height);
         canvasContext.restore();
         canvasContext.beginPath();
-        canvasContext.strokeStyle = "red";
+        /*canvasContext.strokeStyle = "red";
         canvasContext.arc(
             this.x + oneBlockSize / 2,
             this.y + oneBlockSize / 2,
@@ -248,7 +212,7 @@ class Ghost {
             0,
             2 * Math.PI
         );
-        canvasContext.stroke();
+        canvasContext.stroke();*/
     }
 }
 
